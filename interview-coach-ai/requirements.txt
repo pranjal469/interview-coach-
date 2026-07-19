@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+langchain-groq
+python-dotenv
+pypdf
+python-multipart
+supabase

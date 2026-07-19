@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0a0e17;
+  color: #e8ecf4;
+  font-family: 'Inter', sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.06), transparent 40%);
+}
+
+.screen {
+  width: 100%;
+  max-width: 640px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #818cf8, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  color: #8b93a7;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #8b93a7;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  background: #131826;
+  border: 1px solid #232a3d;
+  color: #e8ecf4;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  margin-bottom: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  width: 100%;
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  color: #0a0e17;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+  font-family: inherit;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  background: #232a3d;
+  color: #4b5468;
+  cursor: not-allowed;
+}
+
+.question-card {
+  background: #131826;
+  border: 1px solid #232a3d;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.question-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6366f1;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.question {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px;
+  background: #131826;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #22d3ee);
+  transition: width 0.4s ease;
+}
+
+.feedback-box {
+  background: #0f1420;
+  border-left: 2px solid #6366f1;
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.feedback-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8b93a7;
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.feedback-text {
+  font-size: 0.9rem;
+  color: #c5cbdb;
+  margin: 0 0 14px;
+  line-height: 1.6;
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  background: #131826;
+  border: 1px solid #232a3d;
+  padding: 8px 18px;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+
+.score-badge .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #818cf8, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.score-badge .denom {
+  color: #8b93a7;
+  font-size: 0.9rem;
+}
+
+.summary-block {
+  background: #131826;
+  border: 1px solid #232a3d;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.summary-block p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #c5cbdb;
+  margin: 0;
+}
+
+.agent-trace {
+  background: #0f1420;
+  border: 1px solid #232a3d;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.2s ease;
+}
+
+.agent-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22d3ee;
+  animation: pulse 1.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.agent-trace span {
+  font-size: 0.85rem;
+  color: #8b93a7;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.agent-trace strong {
+  color: #22d3ee;
+  font-weight: 600;
+}
+
+.question-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.type-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.type-technical {
+  background: rgba(34, 211, 238, 0.12);
+  color: #22d3ee;
+}
+
+.type-behavioral {
+  background: rgba(129, 140, 248, 0.12);
+  color: #818cf8;
+}
+
+.score-history {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.score-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #131826;
+  border: 1px solid #232a3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #22d3ee;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.feedback-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.score-pill {
+  background: rgba(34, 211, 238, 0.12);
+  color: #22d3ee;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* ── PDF Resume Upload ─────────────────────────────────── */
+.upload-resume-section {
+  margin-bottom: 12px;
+}
+
+.upload-btn {
+  width: 100%;
+  background: transparent;
+  border: 1.5px dashed #3b4258;
+  color: #8b93a7;
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  font-family: inherit;
+  margin-bottom: 0;
+}
+
+.upload-btn:hover:not(:disabled) {
+  border-color: #6366f1;
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.06);
+  transform: none;
+}
+
+.upload-btn:disabled {
+  border-color: #232a3d;
+  color: #4b5468;
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.upload-message {
+  font-size: 0.82rem;
+  margin: 6px 0 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+.upload-message--success {
+  background: rgba(52, 211, 153, 0.1);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.upload-message--error {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}

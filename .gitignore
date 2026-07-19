@@ -1,0 +1,27 @@
+# Secrets and Environment Files
+.env
+.env*.local
+*.env
+
+# Python Virtual Environments & Caches
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node Modules and Build Output
+node_modules/
+dist/
+dist-ssr/
+.yarn/
+
+# Local Storage/Database Mock Files
+sessions.json
+
+# System/IDE Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
