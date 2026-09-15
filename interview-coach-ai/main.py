@@ -99,15 +99,25 @@ def start_interview(req: StartRequest):
 
 @app.post("/submit-answer")
 def submit_answer(req: AnswerRequest):
+    if req.session_id not in sessions:
+        raise HTTPException(status_code=400, detail="Session not found or expired. Please start a new interview.")
+        
     session = sessions[req.session_id]
     idx = session["current_index"]
+    
+    if idx >= len(session["questions"]):
+        raise HTTPException(status_code=400, detail="Interview already completed.")
+        
     question_obj = session["questions"][idx]
     question = question_obj["text"]
     difficulty = session["difficulty"]
 
-    evaluation = evaluator_agent(question, req.answer, difficulty)
-    followup = interviewer_agent(question, req.answer, difficulty)
-    score = extract_score(evaluation)
+    try:
+        evaluation = evaluator_agent(question, req.answer, difficulty)
+        followup = interviewer_agent(question, req.answer, difficulty)
+        score = extract_score(evaluation)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"AI Agent Error: {str(e)}")
 
     result = {
         "question": question,

@@ -81,38 +81,46 @@ function App() {
     setLoading(true)
     setAgentStatus('Interviewer reviewing your answer...')
 
-    await new Promise((r) => setTimeout(r, 500))
-    setAgentStatus('Evaluator scoring your response...')
+    try {
+      await new Promise((r) => setTimeout(r, 500))
+      setAgentStatus('Evaluator scoring your response...')
 
-    const res = await axios.post(`${API_BASE}/submit-answer`, {
-      session_id: sessionId,
-      answer: answer
-    })
+      const res = await axios.post(`${API_BASE}/submit-answer`, {
+        session_id: sessionId,
+        answer: answer
+      })
 
-    setAgentStatus('Preparing follow-up...')
-    await new Promise((r) => setTimeout(r, 400))
+      setAgentStatus('Preparing follow-up...')
+      await new Promise((r) => setTimeout(r, 400))
 
-    setLastFeedback({
-      evaluation: res.data.evaluation,
-      followup: res.data.followup,
-      score: res.data.score
-    })
-    setScoreHistory((prev) => [...prev, res.data.score])
-    setAnswer('')
-    setAgentStatus('')
-
-    if (res.data.is_last_question) {
-      setAgentStatus('Coach compiling your session feedback...')
-      const endRes = await axios.post(`${API_BASE}/end-session/${sessionId}`)
-      setFinalResult(endRes.data)
+      setLastFeedback({
+        evaluation: res.data.evaluation,
+        followup: res.data.followup,
+        score: res.data.score
+      })
+      setScoreHistory((prev) => [...prev, res.data.score])
+      setAnswer('')
       setAgentStatus('')
-      setScreen('summary')
-    } else {
-      setCurrentQuestion(res.data.next_question)
-      setCurrentType(res.data.next_question_type)
-      setQuestionNum((n) => n + 1)
+
+      if (res.data.is_last_question) {
+        setAgentStatus('Coach compiling your session feedback...')
+        const endRes = await axios.post(`${API_BASE}/end-session/${sessionId}`)
+        setFinalResult(endRes.data)
+        setAgentStatus('')
+        setScreen('summary')
+      } else {
+        setCurrentQuestion(res.data.next_question)
+        setCurrentType(res.data.next_question_type)
+        setQuestionNum((n) => n + 1)
+      }
+    } catch (err) {
+      console.error(err);
+      const errorDetail = err.response?.data?.detail || "A network or server error occurred. Please try again.";
+      alert(`Error submitting answer: ${errorDetail}`);
+      setAgentStatus('');
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   const downloadReport = () => {
